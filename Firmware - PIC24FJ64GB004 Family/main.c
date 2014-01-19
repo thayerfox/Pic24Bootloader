@@ -287,12 +287,17 @@ int main(void)
 {   
 //    mBootloaderSwitch();
     TRISBbits.TRISB2 = 1;
+    TRISBbits.TRISB3 = 0;
+    
     AD1PCFGbits.PCFG4 = 1;
 
     if (PORTBbits.RB2 == 0)
     {
+        LATBbits.LATB3 = 1;
         __asm__("goto 0x1400");
     }
+
+    LATBbits.LATB3 = 0;
 
     InitializeSystem();
 	LATA = 0x0000;
